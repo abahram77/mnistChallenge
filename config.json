@@ -23,7 +23,7 @@
   "threshold":56,
   "a": 0.01,
   "random_start": true,
-  "loss_func": "xent",
+  "loss_func": "cw",
   "store_adv_path": "attack.npy",
   "store_adv_L0_path": "attackL0.npy"
 }

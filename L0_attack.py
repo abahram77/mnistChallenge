@@ -81,6 +81,7 @@ class L0Attack:
     for i in range(self.threshold):
       grad = sess.run(self.grad, feed_dict={self.model.x_input: x,
                                            self.model.y_input: y})
+      grad2 = grad.tolist()
 
       for j in range(len(x)):
         max_grad=np.where(grad[j] == np.amax(grad[j]))
@@ -161,7 +162,7 @@ if __name__ == '__main__':
     config = json.load(config_file)
 
 
-  model_file = tf.train.latest_checkpoint(config['model_dir'])
+  model_file = tf.train.latest_checkpoint(config['model_dir2'])
   if model_file is None:
     print('No model found')
     sys.exit()
@@ -189,7 +190,7 @@ if __name__ == '__main__':
     num_eval_examples = config['num_eval_examples']
     eval_batch_size = config['eval_batch_size']
     num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
-
+    num_batches=1
 
     x_adv = [] # adv accumulator
 

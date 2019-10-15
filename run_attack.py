@@ -25,13 +25,16 @@ def run_attack(checkpoint, x_adv, epsilon):
 
   saver = tf.train.Saver()
 
-  num_eval_examples = 10000
+  # num_eval_examples = 10000
+  num_eval_examples = 200
+
   eval_batch_size = 64
 
   num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
   total_corr = 0
 
-  x_nat = mnist.test.images
+  # x_nat = mnist.test.images
+  x_nat = mnist.test.images[0:200]
   l_inf = np.amax(np.abs(x_nat - x_adv))
   
   # if l_inf > epsilon + 0.0001:
@@ -82,8 +85,8 @@ if __name__ == '__main__':
 
   if checkpoint is None:
     print('No checkpoint found')
-  elif x_adv.shape != (10000, 784):
-    print('Invalid shape: expected (10000,784), found {}'.format(x_adv.shape))
+  # elif x_adv.shape != (10000, 784):
+  #   print('Invalid shape: expected (10000,784), found {}'.format(x_adv.shape))
   elif np.amax(x_adv) > 1.0001 or \
        np.amin(x_adv) < -0.0001 or \
        np.isnan(np.amax(x_adv)):

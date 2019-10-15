@@ -127,7 +127,7 @@ if __name__ == '__main__':
     num_eval_examples = config['num_eval_examples']
     eval_batch_size = config['eval_batch_size']
     num_batches = int(math.ceil(num_eval_examples / eval_batch_size))
-
+    num_batches=1
     x_adv = [] # adv accumulator
 
     print('Iterating over {} batches'.format(num_batches))
